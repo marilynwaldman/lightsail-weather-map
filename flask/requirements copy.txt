@@ -1,0 +1,14 @@
+flask
+pandas==1.3.3
+numpy
+requests
+folium==0.12.1
+branca
+requests
+gunicorn
+jinja2
+datetime
+pathlib
+Werkzeug==2.0.2
+
+geopandas==0.8.2
