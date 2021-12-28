@@ -1,19 +1,21 @@
+# Set base image (host OS)
 FROM python:3.9
 
+EXPOSE 8000/tcp
+
+# Set the working directory in the container
 WORKDIR /app
 
-COPY . /app
+# Copy the dependencies file to the working directory
+COPY requirements.txt .
 
-EXPOSE 8000:8000
+# Install any dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt /app/requirements.txt
+# Copy the content of the local src directory to the working directory
+COPY . .
 
-WORKDIR /app
-
-RUN pip install -r requirements.txt
-
-
-CMD [ "python", "app.py" ]
+#CMD [ "python", "app.py" ]
 
 
 
