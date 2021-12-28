@@ -112,6 +112,6 @@ def geoerror():
   return render_template('error.html', culprit='the Map', details=details)
 
 @server.route('/dataerror.html')
-def geoerror():
+def dataerror():
   details = "Weather data not found."
   return render_template('error.html', culprit='the Weather Data', details=details)
