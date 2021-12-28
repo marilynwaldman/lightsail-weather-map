@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
     server.vars['logo_path'] = logo_path
-    map_dir = os.path.join(server.root_path, 'maps')
+    map_dir = os.path.join(server.root_path, 'weathermaps')
     map_path = os.path.join(map_dir, 'wxwarning.html')
     server.vars['map_path'] = map_path
     #weather_df =  get_weather_data(server)
