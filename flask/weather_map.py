@@ -38,13 +38,15 @@ def crunch_data(weather_df):
 
 
 def make_weather_map(weather_df, map_path):
-
+    print("in make weather map")
+    print(weather_df.head(2))
+    print(map_path)
     # weather_df - shape files with weather warnings
     # map_path - path to file with generated weather map, ie .html file
 
     # get the current time in UTC (constant reference timezone)
     timestamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes')
-    
+    print(timestamp)
     # Use branca.colormap instead of choropleth
     # augment df with color features
     weather_df, max_wxwarnings, min_wxwarnings = crunch_data(weather_df)
@@ -52,7 +54,7 @@ def make_weather_map(weather_df, map_path):
     mbr = fl.Map(location=[40.0,-95.0],zoom_start=4,tiles="Stamen Toner")
 
     colormap = cm.linear.Set1_09.scale(min_wxwarnings,max_wxwarnings).to_step(len(set(weather_df['PROD_ID'])))
-
+    print("after colormap")
 
     #Add weather data to map with mouseover (this will take a few minutes), include tooltip
 
@@ -81,6 +83,7 @@ def make_weather_map(weather_df, map_path):
     MiniMap(tile_layer='stamenterrain',zoom_level_offset=-5).add_to(mbr)
     
     if os.path.exists(map_path):
+        print("if map_path exits")
         os.remove(map_path)
     
     mbr.save(map_path)
