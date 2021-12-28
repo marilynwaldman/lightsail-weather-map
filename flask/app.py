@@ -34,6 +34,7 @@ if os.path.exists(map_dir) and os.path.isdir(map_dir):
       shutil.rmtree(map_dir)
 
 os.mkdir(map_dir) 
+os.chmod(map_dir, "+rw")
 map_path =  str(map_dir)+'/wxwarning.html'
 server.vars['map_path'] = map_path
 server.vars['map_dir'] = map_dir
