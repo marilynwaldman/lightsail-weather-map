@@ -17,10 +17,11 @@ if __name__ == "__main__":
     #Bootstrap(server)
     #server.config['TEMPLATES_AUTO_RELOAD'] = True
     #server.vars = {}
+    cwd = Path.cwd()
 
-    logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
+    logo_path = os.path.join(cwd, 'static/img/logo.png' )
     server.vars['logo_path'] = logo_path
-    map_dir = os.path.join(server.root_path, 'weathermaps')
+    map_dir = os.path.join(cwd, 'weathermaps')
     if os.path.exists(map_dir) and os.path.isdir(map_dir):
          shutil.rmtree(map_dir)
 
