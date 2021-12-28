@@ -1,19 +1,9 @@
-import numpy as np
-import pandas as pd
 import geopandas as gpd
-from requests.models import ChunkedEncodingError
 import folium as fl
-from folium.plugins import FastMarkerCluster,MarkerCluster,MiniMap
+from folium.plugins import MiniMap
 import branca.colormap as cm
 import os as os
-import pathlib
-import re
-import random
-import json
-import requests
-import tarfile
 import datetime as dt
-from flask import Flask, render_template, request, redirect, url_for, send_file, make_response
 
 def crunch_data(weather_df):
     wxwarnings = {}
@@ -94,9 +84,8 @@ def make_weather_map(weather_df, map_path):
         os.remove(map_path)
     
     mbr.save(map_path)
-    time_now = dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes')
-
-    return  time_now
+    
+    return  timestamp
 
 
 

@@ -1,28 +1,19 @@
-# Set base image (host OS)
-FROM continuumio/miniconda3
-LABEL maintainer="mdwaldman"
+FROM python:3.9
 
-RUN conda config --add channels conda-forge && conda update -y conda \
-&& conda install -y geopandas
-
-RUN conda install pip
-
-EXPOSE 8000/tcp
-
-# Set the working directory in the container
 WORKDIR /app
 
+COPY . /app
 
-# Copy the dependencies file to the working directory
-COPY requirements.txt .
+EXPOSE 8000:8000
 
-RUN pip install --upgrade pip
+COPY requirements.txt /app/requirements.txt
+
+WORKDIR /app
+
+RUN pip install -r requirements.txt
 
 
-# Install any dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+CMD [ "python", "app.py" ]
 
-# Copy the content of the local src directory to the working directory
-COPY . .
 
-CMD ["python", "wsgi.py"]
+
