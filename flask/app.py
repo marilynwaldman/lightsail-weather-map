@@ -6,6 +6,7 @@ from weather_data import  get_weather_data
 from weather_map import make_weather_map 
 import geopandas as gpd
 import pandas as pd
+import shutil
 
 
 
@@ -23,7 +24,19 @@ server = Flask(__name__)
 
 #Bootstrap(app)
 server.config['TEMPLATES_AUTO_RELOAD'] = True
-#server.vars = {}
+server.vars = {}
+cwd = Path.cwd()
+
+logo_path = os.path.join(cwd, 'static/img/logo.png' )
+server.vars['logo_path'] = logo_path
+map_dir = os.path.join(cwd, 'weathermaps')
+if os.path.exists(map_dir) and os.path.isdir(map_dir):
+      shutil.rmtree(map_dir)
+
+os.mkdir(map_dir) 
+map_path =  str(map_dir)+'wxwarning.html'
+server.vars['map_path'] = map_path
+server.vars['map_dir'] = map_dir
 
 def nocache(view):
   @wraps(view)
