@@ -7,6 +7,7 @@ from weather_map import make_weather_map
 import geopandas as gpd
 import pandas as pd
 import shutil
+import datetime as dt
 
 
 
@@ -82,7 +83,8 @@ def index():
     #print(server.vars['map_path'])
     
 
-    if Path(map_path).exists():
+    if os.path.exists(map_path):
+        print("about to display map")
         return render_template('display.html', vars=server.vars)
     else:     
         return redirect('/maperror.html')
@@ -100,6 +102,7 @@ def show_map():
   print(map_path)
   map_file = Path(map_path)
   if map_file.exists():
+    print("found map")
     return send_file(map_path)
   else:
     return render_template('error.html', culprit='map file', details="the map file couldn't be loaded")
@@ -113,6 +116,7 @@ def get_logo():
   logo_path = server.vars.get("logo_path")
   logo_file = Path(logo_path)
   if logo_file.exists():
+    print("logo found")
     return send_file(logo_path)
   else:
     return render_template('error.html', culprit='logo file', details="the logo file couldn't be loaded")
