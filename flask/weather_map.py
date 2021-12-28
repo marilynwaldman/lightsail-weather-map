@@ -82,8 +82,9 @@ def make_weather_map(weather_df, map_path, map_dir):
 
     # Add minimap
     MiniMap(tile_layer='stamenterrain',zoom_level_offset=-5).add_to(mbr)
-    
+    print("after map title")
     if os.path.exists(map_dir) and os.path.isdir(map_dir):
+        print("weathermaps directory exits")
         if os.path.exists(map_path):
             print("if map_path exits")
             os.remove(map_path)
