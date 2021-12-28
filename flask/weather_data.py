@@ -55,6 +55,7 @@ def get_weather_data(app):
          wxdata.list(verbose=True)
          wxdata.extractall(path=str(dest_path)+'/current_all/')
          infile = str(dest_path) + '/current_all/current_all.shp'
+         
          if os.path.exists(infile):
               weather_df = gpd.read_file(infile)    
               weather_df = weather_df.drop(columns=['PHENOM','SIG','WFO','EVENT','ONSET','ENDS','CAP_ID','MSG_TYPE','VTEC'])  
