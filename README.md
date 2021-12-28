@@ -1,3 +1,6 @@
+### this stuff for testing locally on ec2 prior to lightsail distribution
+```
+
 removing all containers and images
 sudo docker rm $(sudo docker ps -a -f status=exited -q)
 sudo docker ps -a
@@ -5,9 +8,9 @@ sudo docker stop $(sudo docker ps -a -q)
 sudo docker rm $(sudo docker ps -a -q)
 sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it f0a14a58e370 /bin/sh
-sudo docker logs f0a14a58e370
-
+sudo docker exec -it c3cf40af2de6 /bin/sh
+sudo docker logs c3cf40af2de6
+```
 
 
 # Working template for flask gunicorn on aws lightsail.
@@ -86,33 +89,18 @@ sudo chmod +x /usr/local/bin/lightsailctl
 5.  Clone this repository on the ec2 instance:
 
 ```
-git clone https://github.com/marilynwaldman/lightsail-map-server.git
-cd lightsail-map-server
+git clone https://github.com/marilynwaldman/lightsail-weather-map.git
+cd lightsail-weather-map
 
 ```
 
-6.  The .html files for the existing maps cannot be uploaed to github because of their size.  scp them to the ec2 instance from you local machine.  This is a get-around until it is decided how to implement a persistant store.
+cd to nginx and change the project.conf server to localhost.  It is flask_app when running from docker-compose on ec2.
 
-From your local machine.  Substitute  '/Users/marilynwaldman' with your home path
-
-```
-cd /
-pwd
-``
-
-get your home path
-
-```
-
-scp -i <your key> \
- <home path>/lightsail-map-server/flask/static/*.html \
-      ubuntu@xx.xx.xx.xx:~/lightsail-map-server/flask/static/
-```
 
 7.  The map server will run on a separate lightsail container.  Delete an existing container if it exists.  Log into your lightsail console to see if a service is running
 
 ```
-sudo aws lightsail delete-container-service --service-name static-map-service
+sudo aws lightsail delete-container-service --service-name weather-service
 ``
 
 Wait for the completion of this task before continuting.
@@ -133,7 +121,8 @@ sudo docker build -t nginx-container ./nginx
 
 
 ```
-sudo aws lightsail create-container-service --service-name static-map-service \
+sudo aws lightsail create-container-service --service-name  \ 
+weather-service \
 --power small \
 --scale 1
 ```
@@ -143,18 +132,18 @@ Use the get-container-services command to monitor the state of the container as 
 Also log into the lightsail console and check container services.
 
 ```
-sudo aws lightsail get-container-services --service-name static-map-service
+sudo aws lightsail get-container-services --service-name weather-service
 ```
 
 10. Push the Flask application container to Lightsail with the push-container-image command.
 ```
-sudo aws lightsail push-container-image --service-name static-map-service \
+sudo aws lightsail push-container-image --service-name weather-service \
 --label flask-container \
 --image flask-container
 ```
 
 ```
-sudo aws lightsail push-container-image --service-name static-map-service \
+sudo aws lightsail push-container-image --service-name weather-service \
 --label nginx-container \
 --image nginx-container
 
@@ -171,7 +160,7 @@ Either vi the ec2 file or update locally, push to github and pull on ec2.
 Deploy the containers to the container service with the AWS CLI using the create-container-service-deployment command.
 
 ```
-sudo aws lightsail create-container-service-deployment --service-name static-map-service \
+sudo aws lightsail create-container-service-deployment --service-name weather-service \
 --containers file://containers.json \
 --public-endpoint file://public-endpoint.json
 
