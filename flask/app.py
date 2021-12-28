@@ -100,8 +100,8 @@ def show_map():
   map_path = server.vars.get("map_path")
   print("show map")
   print(map_path)
-  map_file = Path(map_path)
-  if map_file.exists():
+  #map_file = Path(map_path)
+  if os.path.exists(map_path):
     print("found map")
     return send_file(map_path)
   else:
@@ -114,8 +114,9 @@ def show_map():
 def get_logo():
   #logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
   logo_path = server.vars.get("logo_path")
-  logo_file = Path(logo_path)
-  if logo_file.exists():
+  #logo_file = Path(logo_path)
+  print(logo_path)
+  if os.path.exists(logo_path):
     print("logo found")
     return send_file(logo_path)
   else:

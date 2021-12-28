@@ -11,7 +11,7 @@
         }
     },
     "flask": {
-        "image": ":weather-service.flask-container.47",
+        "image": ":weather-service.flask-container.48",
         "command": ["gunicorn", "--workers", "1", "--bind", "0.0.0.0:8000", "wsgi:server"],
         "ports": {
             "8000": "HTTP"
