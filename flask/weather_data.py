@@ -20,6 +20,7 @@ import urllib3
 import shutil
 from pathlib import Path
 import geopandas as gpd
+import pandas as pd
 
 def get_weather_data(app):
     # We create a downloads directory within the streamlit static asset directory

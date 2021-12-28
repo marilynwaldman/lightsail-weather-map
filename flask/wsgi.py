@@ -7,6 +7,8 @@ from datetime import datetime
 from pathlib import Path
 from weather_data import  get_weather_data
 from weather_map import make_weather_map 
+import pandas as pd
+
 
 from app import server
 
