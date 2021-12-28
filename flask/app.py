@@ -29,7 +29,7 @@ cwd = Path.cwd()
 
 logo_path = os.path.join(cwd, 'static/img/logo.png' )
 server.vars['logo_path'] = logo_path
-map_dir = os.path.join(cwd, 'weathermaps')
+map_dir = os.path.join(cwd, 'weathermaps/')
 if os.path.exists(map_dir) and os.path.isdir(map_dir):
       shutil.rmtree(map_dir)
 
@@ -62,6 +62,7 @@ def index():
     #map_path = os.path.join(static_dir, 'wxwarning.html')
     
     map_path = server.vars.get("map_path")
+    map_dir = server.vars.get("map_dir")
     print(map_path)
     weather_df =  get_weather_data(server)
     print("back from get data")
@@ -72,7 +73,7 @@ def index():
     print(weather_df.head(2))
     print("before make map.  Here is map_path")
     print(map_path)
-    timestamp = make_weather_map(weather_df, map_path)
+    timestamp = make_weather_map(weather_df, map_path, map_dir)
     server.vars['Title_line1'] = 'Current U.S. Weather Statements'
     server.vars['Title_line2'] = timestamp[0:10]+' '+timestamp[11:16]+' UTC'
     print(map_path)

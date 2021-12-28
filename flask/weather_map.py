@@ -37,10 +37,11 @@ def crunch_data(weather_df):
     
 
 
-def make_weather_map(weather_df, map_path):
+def make_weather_map(weather_df, map_path, map_dir):
     print("in make weather map")
     print(weather_df.head(2))
     print(map_path)
+    print(map_dir)
     # weather_df - shape files with weather warnings
     # map_path - path to file with generated weather map, ie .html file
 
@@ -82,9 +83,13 @@ def make_weather_map(weather_df, map_path):
     # Add minimap
     MiniMap(tile_layer='stamenterrain',zoom_level_offset=-5).add_to(mbr)
     
-    if os.path.exists(map_path):
-        print("if map_path exits")
-        os.remove(map_path)
+    if os.path.exists(map_dir) and os.path.isdir(map_dir):
+        if os.path.exists(map_path):
+            print("if map_path exits")
+            os.remove(map_path)
+    else: 
+        print("weather directory did not exist")   
+        os.mkdir(map_dir)
     
     mbr.save(map_path)
     print("saved map")
