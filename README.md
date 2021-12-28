@@ -121,8 +121,7 @@ sudo docker build -t nginx-container ./nginx
 
 
 ```
-sudo aws lightsail create-container-service --service-name  \ 
-weather-service \
+sudo aws lightsail create-container-service --service-name  weather-service \
 --power small \
 --scale 1
 ```
