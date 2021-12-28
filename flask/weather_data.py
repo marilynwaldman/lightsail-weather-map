@@ -29,6 +29,7 @@ def get_weather_data(app):
 
      url='https://tgftp.nws.noaa.gov/SL.us008001/DF.sha/DC.cap/DS.WWA/current_all.tar.gz'
      cwd = Path.cwd()
+     print("here I am")
     
      dest_path = os.path.join(os.getcwd(), 'downloads/')
      

@@ -20,8 +20,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_file,
 server = Flask(__name__)
 
 #Bootstrap(app)
-#server.config['TEMPLATES_AUTO_RELOAD'] = True
-#server.vars = {}
+server.config['TEMPLATES_AUTO_RELOAD'] = True
+server.vars = {}
 
 def nocache(view):
   @wraps(view)
@@ -47,6 +47,7 @@ def index():
     #map_path = os.path.join(static_dir, 'wxwarning.html')
     
     map_path = server.vars.get("map_path")
+    print(map_path)
     weather_df =  get_weather_data(server)
     if weather_df is None:
       return redirect('/dataerror.html')
