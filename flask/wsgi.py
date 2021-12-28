@@ -18,8 +18,8 @@ if __name__ == "__main__":
 
     logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
     server.vars['logo_path'] = logo_path
-    static_dir = os.path.join(server.root_path, 'static/')
-    map_path = os.path.join(static_dir, 'wxwarning.html')
+    map_dir = os.path.join(server.root_path, 'map/')
+    map_path = os.path.join(map_dir, 'wxwarning.html')
     server.vars['map_path'] = map_path
     #weather_df =  get_weather_data(server)
     #time_now = make_weather_map(weather_df, map_path)
