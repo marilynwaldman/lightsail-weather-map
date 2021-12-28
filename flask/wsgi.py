@@ -21,9 +21,9 @@ if __name__ == "__main__":
     map_dir = os.path.join(server.root_path, 'weathermaps')
     map_path = os.path.join(map_dir, 'wxwarning.html')
     server.vars['map_path'] = map_path
-    #weather_df =  get_weather_data(server)
-    #time_now = make_weather_map(weather_df, map_path)
-    #server.vars['current_map_time'] = time_now
-    #print(weather_df.head())
+    weather_df =  get_weather_data(server)
+    time_now = make_weather_map(weather_df, map_path)
+    server.vars['current_map_time'] = time_now
+    print(weather_df.head())
 
     server.run(host='0.0.0.0', port=8000)
