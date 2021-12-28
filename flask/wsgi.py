@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from weather_data import  get_weather_data
 from weather_map import make_weather_map 
-import pandas as pd
+import shutil
 
 
 from app import server
@@ -21,8 +21,13 @@ if __name__ == "__main__":
     logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
     server.vars['logo_path'] = logo_path
     map_dir = os.path.join(server.root_path, 'weathermaps')
-    map_path = os.path.join(map_dir, 'wxwarning.html')
+    if os.path.exists(map_dir) and os.path.isdir(map_dir):
+         shutil.rmtree(map_dir)
+
+    os.mkdir(map_dir) 
+    map_path =  str(map_dir)+'wxwarning.html'
     server.vars['map_path'] = map_path
+    server.vars['map_dir'] = map_dir
     #weather_df =  get_weather_data(server)
     #time_now = make_weather_map(weather_df, map_path)
     #server.vars['current_map_time'] = time_now
