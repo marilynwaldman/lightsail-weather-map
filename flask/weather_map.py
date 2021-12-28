@@ -1,5 +1,4 @@
 import geopandas as gpd
-import pandas as pd
 import folium as fl
 from folium.plugins import MiniMap
 import branca.colormap as cm
