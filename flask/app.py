@@ -34,7 +34,7 @@ if os.path.exists(map_dir) and os.path.isdir(map_dir):
       shutil.rmtree(map_dir)
 
 os.mkdir(map_dir) 
-map_path =  str(map_dir)+'wxwarning.html'
+map_path =  str(map_dir)+'/wxwarning.html'
 server.vars['map_path'] = map_path
 server.vars['map_dir'] = map_dir
 
@@ -64,8 +64,12 @@ def index():
     map_path = server.vars.get("map_path")
     print(map_path)
     weather_df =  get_weather_data(server)
+    print("back from get data")
+
     if weather_df is None:
+      print("weather_df is NONE")
       return redirect('/dataerror.html')
+    print(weather_df.head(2))
     timestamp = make_weather_map(weather_df, map_path)
     server.vars['Title_line1'] = 'Current U.S. Weather Statements'
     server.vars['Title_line2'] = timestamp[0:10]+' '+timestamp[11:16]+' UTC'
