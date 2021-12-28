@@ -15,8 +15,8 @@ from app import server
 if __name__ == "__main__":
 
     #Bootstrap(server)
-    server.config['TEMPLATES_AUTO_RELOAD'] = True
-    server.vars = {}
+    #server.config['TEMPLATES_AUTO_RELOAD'] = True
+    #server.vars = {}
 
     logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
     server.vars['logo_path'] = logo_path

@@ -22,8 +22,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_file,
 server = Flask(__name__)
 
 #Bootstrap(app)
-#server.config['TEMPLATES_AUTO_RELOAD'] = True
-#server.vars = {}
+server.config['TEMPLATES_AUTO_RELOAD'] = True
+server.vars = {}
 
 def nocache(view):
   @wraps(view)

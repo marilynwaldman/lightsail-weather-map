@@ -1,3 +1,15 @@
+removing all containers and images
+sudo docker rm $(sudo docker ps -a -f status=exited -q)
+sudo docker ps -a
+sudo docker stop $(sudo docker ps -a -q)
+sudo docker rm $(sudo docker ps -a -q)
+sudo docker rmi $(sudo docker images -a -q)
+docker exec -it bd31f5528c84 /bin/sh
+docker exec -it bd31f5528c84 /bin/sh
+docker logs bd31f5528c84
+
+
+
 # Working template for flask gunicorn on aws lightsail.
 
 # gunicorn adapted from:
