@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the content of the local src directory to the working directory
 COPY . .
 
-#CMD [ "python", "app.py" ]
+#CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "wsgi:server"]
 
 
 
