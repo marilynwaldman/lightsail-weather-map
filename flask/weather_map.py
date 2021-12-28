@@ -84,6 +84,7 @@ def make_weather_map(weather_df, map_path):
         os.remove(map_path)
     
     mbr.save(map_path)
+    print("saved map")
     
     return  timestamp
 
