@@ -23,7 +23,7 @@ import geopandas as gpd
 import pandas as pd
 
 def awaitdata(destination):
-    for i in range (0,3):
+    for i in range (0,10):
          if  os.path.exists(destination): 
              return  tarfile.open(name=destination)
 
