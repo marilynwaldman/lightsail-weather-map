@@ -70,6 +70,8 @@ def index():
       print("weather_df is NONE")
       return redirect('/dataerror.html')
     print(weather_df.head(2))
+    print("before make map.  Here is map_path")
+    print(map_path)
     timestamp = make_weather_map(weather_df, map_path)
     server.vars['Title_line1'] = 'Current U.S. Weather Statements'
     server.vars['Title_line2'] = timestamp[0:10]+' '+timestamp[11:16]+' UTC'
