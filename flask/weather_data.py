@@ -22,6 +22,15 @@ from pathlib import Path
 import geopandas as gpd
 import pandas as pd
 
+def awaitdata(destination):
+    for i in range (0,3):
+         if  os.path.exists(destination): 
+             return  tarfile.open(name=destination)
+
+         time.sleep(1)
+    return None
+
+
 def get_weather_data(app):
     # We create a downloads directory within the streamlit static asset directory
     # and we write output files to it
@@ -50,9 +59,12 @@ def get_weather_data(app):
              for chunk in resp.stream(32):
                 f.write(chunk)
 
-         resp.release_conn()  
-         time.sleep(2)
-         wxdata = tarfile.open(name=destination)
+         resp.release_conn() 
+         wxdata = awaitdata(destination)
+         if wxdata == None:
+             return None
+
+         #wxdata = tarfile.open(name=destination)
          wxdata.list(verbose=True)
          wxdata.extractall(path=str(dest_path)+'/current_all/')
          infile = str(dest_path) + '/current_all/current_all.shp'

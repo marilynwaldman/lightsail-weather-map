@@ -129,5 +129,5 @@ def geoerror():
 
 @server.route('/dataerror.html')
 def dataerror():
-  details = "Weather data not found."
+  details = "Weather data not found or took took much time to load."
   return render_template('error.html', culprit='the Weather Data', details=details)

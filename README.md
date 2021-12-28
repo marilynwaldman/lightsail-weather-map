@@ -5,8 +5,8 @@ sudo docker stop $(sudo docker ps -a -q)
 sudo docker rm $(sudo docker ps -a -q)
 sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it dc88e49b5dbc /bin/sh
-sudo docker logs dc88e49b5dbc
+sudo docker exec -it f0a14a58e370 /bin/sh
+sudo docker logs f0a14a58e370
 
 
 
