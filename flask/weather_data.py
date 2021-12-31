@@ -73,12 +73,13 @@ def get_weather_data(app):
               weather_df = gpd.read_file(infile)    
               weather_df = weather_df.drop(columns=['PHENOM','SIG','WFO','EVENT','ONSET','ENDS','CAP_ID','MSG_TYPE','VTEC'])  
               print("got weather df")
+              shutil.rmtree(dest_path)
               return weather_df
          else:
               return None     
 
      except Exception as e:
-      print("Error occured :: %s" % e.message)
+       return None
 
   
 
