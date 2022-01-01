@@ -88,7 +88,10 @@ def make_weather_map(weather_df, map_path, map_dir):
         if os.path.exists(map_path):
             print("if map_path exits")
             os.remove(map_path)
-        mbr.save(map_path)  
+        mbr.save(map_path) 
+        if not os.path.exists(map_path):
+            print("map not saved") 
+            return 0
         print("map saved in if")  
     
     
