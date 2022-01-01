@@ -10,6 +10,23 @@ sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
 sudo docker exec -it c3cf40af2de6 /bin/sh
 sudo docker logs c3cf40af2de6
+
+sudo docker build -t flask-container ./flask
+
+sudo aws lightsail push-container-image --service-name weather-service \
+--label flask-container \
+--image flask-container
+
+
+
+sudo sudo aws lightsail create-container-service-deployment --service-name weather-service \
+--containers file://containers.json \
+--public-endpoint file://public-endpoint.json
+
+
+
+
+
 ```
 
 
