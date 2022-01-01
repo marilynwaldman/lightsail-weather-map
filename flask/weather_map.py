@@ -91,7 +91,7 @@ def make_weather_map(weather_df, map_path, map_dir):
         mbr.save(map_path) 
         if not os.path.exists(map_path):
             print("map not saved") 
-            return 0
+            return None
         print("map saved in if")  
     
     

@@ -8,7 +8,7 @@ sudo docker stop $(sudo docker ps -a -q)
 sudo docker rm $(sudo docker ps -a -q)
 sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it 15ae4e140364 /bin/sh
+sudo docker exec -it b6b1602edf36 /bin/sh
 sudo docker logs 569668ca1756
 
 sudo docker build -t flask-container ./flask
@@ -19,7 +19,7 @@ sudo aws lightsail push-container-image --service-name weather-service \
 
 
 
-sudo sudo aws lightsail create-container-service-deployment --service-name weather-service \
+sudo aws lightsail create-container-service-deployment --service-name weather-service \
 --containers file://containers.json \
 --public-endpoint file://public-endpoint.json
 

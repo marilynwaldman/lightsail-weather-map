@@ -75,7 +75,7 @@ def index():
     print("before make map.  Here is map_path")
     print(map_path)
     timestamp = make_weather_map(weather_df, map_path, map_dir)
-    if timestamp == 0:
+    if timestamp is None:
       print("map not saved")
       return redirect('/dataerror.html')
     print("back from make map")
