@@ -112,6 +112,7 @@ def show_map():
 
 @server.route('/get_logo')
 def get_logo():
+  print("in get logo")
   #logo_path = os.path.join(server.root_path, 'static/img/logo.png' )
   logo_path = server.vars.get("logo_path")
   #logo_file = Path(logo_path)

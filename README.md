@@ -8,7 +8,7 @@ sudo docker stop $(sudo docker ps -a -q)
 sudo docker rm $(sudo docker ps -a -q)
 sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it c3cf40af2de6 /bin/sh
+sudo docker exec -it daf4a02e8816 /bin/sh
 sudo docker logs c3cf40af2de6
 
 sudo docker build -t flask-container ./flask
