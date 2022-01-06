@@ -8,7 +8,7 @@ sudo docker stop $(sudo docker ps -a -q)
 sudo docker rm $(sudo docker ps -a -q)
 sudo docker rmi $(sudo docker images -a -q)
 docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it b6b1602edf36 /bin/sh
+sudo docker exec -it 412c97d0a9fb /bin/sh
 sudo docker logs 569668ca1756
 
 sudo docker build -t flask-container ./flask
@@ -111,14 +111,14 @@ cd lightsail-weather-map
 
 ```
 
-cd to nginx and change the project.conf server to localhost.  It is flask_app when running from docker-compose on ec2.
+6.  cd to nginx and change the project.conf server to localhost.  It is flask_app when running from docker-compose on ec2.
 
 
 7.  The map server will run on a separate lightsail container.  Delete an existing container if it exists.  Log into your lightsail console to see if a service is running
 
 ```
 sudo aws lightsail delete-container-service --service-name weather-service
-``
+```
 
 Wait for the completion of this task before continuting.
 
