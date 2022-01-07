@@ -7,7 +7,7 @@ import datetime as dt
 
 def crunch_data(weather_df):
     wxwarnings = {}
-    k = 0
+    k = 5
     for w in weather_df['PROD_TYPE'].unique():
         wxwarnings[w]=k
     #    print(w,k)
@@ -15,8 +15,8 @@ def crunch_data(weather_df):
 
     
     all_values = wxwarnings.values()
-    max_wxwarnings = max(all_values)
-    min_wxwarnings = min(all_values)
+    max_wxwarnings = max(all_values)+5
+    min_wxwarnings = min(all_values)-5
 
 
     # Now create an column PROD_ID which duplicates PROD_TYPE
@@ -56,6 +56,17 @@ def make_weather_map(weather_df, map_path, map_dir):
 
     colormap = cm.linear.Set1_09.scale(min_wxwarnings,max_wxwarnings).to_step(len(set(weather_df['PROD_ID'])))
     print("after colormap")
+
+#####Merge (dissolve) weather data by warning type, onset, expiration
+
+    weatherdf_merge = weatherdf.dissolve(by=['PROD_TYPE','ONSET','ENDS'],aggfunc='first',as_index=False)
+    weatherdf = weatherdf_merge
+
+    #Simplify geometry to reduce size of plot
+    weatherdf['geometry']=weatherdf['geometry'].simplify(tolerance=0.1)
+
+    print('merged and simplified')
+######
 
     #Add weather data to map with mouseover (this will take a few minutes), include tooltip
 
