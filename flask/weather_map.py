@@ -59,11 +59,11 @@ def make_weather_map(weather_df, map_path, map_dir):
 
 #####Merge (dissolve) weather data by warning type, onset, expiration
 
-    weatherdf_merge = weatherdf.dissolve(by=['PROD_TYPE','ONSET','ENDS'],aggfunc='first',as_index=False)
-    weatherdf = weatherdf_merge
+    weather_dfmerge = weather_df.dissolve(by=['PROD_TYPE','ONSET','ENDS'],aggfunc='first',as_index=False)
+    weather_df = weather_dfmerge
 
     #Simplify geometry to reduce size of plot
-    weatherdf['geometry']=weatherdf['geometry'].simplify(tolerance=0.1)
+    weather_df['geometry']=weather_df['geometry'].simplify(tolerance=0.1)
 
     print('merged and simplified')
 ######
