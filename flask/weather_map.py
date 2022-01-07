@@ -84,7 +84,7 @@ def make_weather_map(weather_df, map_path, map_dir):
                },
                
                tooltip=fl.GeoJsonTooltip(
-                   fields=['PROD_TYPE','ISSUANCE','EXPIRATION'], 
+                   fields=['PROD_TYPE','ONSET','ENDS'], 
                    aliases=['Hazard', 'Starts','Expires'],
                    labels=True,
                    localize=True
