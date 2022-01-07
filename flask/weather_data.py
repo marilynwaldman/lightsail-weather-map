@@ -71,7 +71,7 @@ def get_weather_data(app):
          
          if os.path.exists(infile):
               weather_df = gpd.read_file(infile)    
-              weather_df = weather_df.drop(columns=['PHENOM','SIG','WFO','EVENT','ONSET','ENDS','CAP_ID','MSG_TYPE','VTEC'])  
+              weather_df = weather_df.drop(columns=['PHENOM','SIG','WFO','EVENT','CAP_ID','MSG_TYPE','VTEC'])  
               print("got weather df")
               #shutil.rmtree(dest_path)
               return weather_df
