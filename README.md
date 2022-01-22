@@ -15,7 +15,7 @@ https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-mode
 
 * Nginx is a load balancer and reverse proxity.  It is used as an end point for web traffic and routes incoming http requests.
 
-* Gunicorn creates multiple forks which are called workers to handle the requests
+* Gunicorn creates multiple forks which are called workers to handle the requests.
 
 * Flask is a micro web framework written in Python that handles http requests: GET, POST, etc.
 
