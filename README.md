@@ -8,8 +8,8 @@ This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  Th
 
 https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
 
-![Architecture](./flask/static/img/arch.png){ width: 200px; }
-<img src="./flask/static/img/arch.png" width="425"/>
+
+<img src="./flask/static/img/arch.png" width="525"/>
 
 
 
