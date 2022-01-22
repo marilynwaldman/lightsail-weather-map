@@ -14,10 +14,11 @@ import datetime as dt
 #from ediblepickle import checkpoint
 from flask import Flask, render_template, request, redirect, url_for, send_file, make_response
 
+# Define global environoment:
+#  1.  Paths to maps and images such as the logo
+#  2.  Create directories for maps to be created.  First delete old
+#      directories if they exist.
 
-###############################################
-#      Define navbar with logo                #
-###############################################
 
 
 
@@ -39,6 +40,7 @@ map_path =  str(map_dir)+'/wxwarning.html'
 server.vars['map_path'] = map_path
 server.vars['map_dir'] = map_dir
 
+# Set up cache headers and directives
 def nocache(view):
   @wraps(view)
   def no_cache(*args, **kwargs):
@@ -51,41 +53,38 @@ def nocache(view):
         
   return update_wrapper(no_cache, view)
 
+# Define the "root" route.   Redirect to index
 
 @server.route('/')
 def main():
   return redirect('/index.html')
 
+#  Define the index route: GET 
+
 @server.route('/index.html', methods=['GET'])
 def index():
   if request.method == 'GET':
-    #static_dir = os.path.join(server.root_path, 'static/')
-    #map_path = os.path.join(static_dir, 'wxwarning.html')
     
     map_path = server.vars.get("map_path")
     map_dir = server.vars.get("map_dir")
-    print(map_path)
+
+    # Get weather data (geopandas dataframe)
     weather_df =  get_weather_data(server)
-    print("back from get data")
 
     if weather_df is None:
-      print("weather_df is NONE")
       return redirect('/dataerror.html')
-    print(weather_df.head(2))
-    print("before make map.  Here is map_path")
-    print(map_path)
+
+    # Create the map
+
     timestamp = make_weather_map(weather_df, map_path, map_dir)
     if timestamp is None:
       print("map not saved")
       return redirect('/dataerror.html')
-    print("back from make map")
+  
     server.vars['Title_line1'] = 'Current U.S. Weather Statements'
     server.vars['Title_line2'] = timestamp[0:10]+' '+timestamp[11:16]+' UTC'
-    print(map_path)
-    #server.vars['map_path'] = map_path
-    #print(server.vars['map_path'])
     
-
+    # Display the weather map
     if os.path.exists(map_path):
         print("about to display map")
         return render_template('display.html', vars=server.vars)

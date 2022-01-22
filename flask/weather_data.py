@@ -39,7 +39,7 @@ def get_weather_data(app):
 
      url='https://tgftp.nws.noaa.gov/SL.us008001/DF.sha/DC.cap/DS.WWA/current_all.tar.gz'
      cwd = Path.cwd()
-     print("here I am")
+     
     
      dest_path = os.path.join(os.getcwd(), 'downloads/')
      
@@ -64,7 +64,6 @@ def get_weather_data(app):
          if wxdata == None:
              return None
 
-         #wxdata = tarfile.open(name=destination)
          wxdata.list(verbose=True)
          wxdata.extractall(path=str(dest_path)+'/current_all/')
          infile = str(dest_path) + '/current_all/current_all.shp'
@@ -72,8 +71,6 @@ def get_weather_data(app):
          if os.path.exists(infile):
               weather_df = gpd.read_file(infile)    
               weather_df = weather_df.drop(columns=['PHENOM','SIG','WFO','EVENT','CAP_ID','MSG_TYPE','VTEC'])  
-              print("got weather df")
-              #shutil.rmtree(dest_path)
               return weather_df
          else:
               return None     

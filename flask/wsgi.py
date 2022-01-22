@@ -1,3 +1,5 @@
+# Create running instance of weather map app
+
 import os as os
 import pathlib
 import zipfile

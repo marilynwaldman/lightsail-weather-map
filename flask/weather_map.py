@@ -1,3 +1,16 @@
+# Program wxwarning
+# by Todd Arbetter (todd.e.arbetter@gmail.com)
+# Software Engineer, IXMap, Golden, CO
+
+# collects latests National Weather Service Warnings, Watches, Advisories,
+# and Statements, plots shapefiles on an interactive map in various colors.
+# The map is able to pan and zoom, and on mouseover will give the type of
+# weather statement, start, and expiry.
+
+# created with streamlit and folium
+
+# import some libraries
+
 import geopandas as gpd
 import folium as fl
 from folium.plugins import MiniMap
@@ -10,7 +23,6 @@ def crunch_data(weather_df):
     k = 5
     for w in weather_df['PROD_TYPE'].unique():
         wxwarnings[w]=k
-    #    print(w,k)
         k += 10
 
     
@@ -38,16 +50,13 @@ def crunch_data(weather_df):
 
 
 def make_weather_map(weather_df, map_path, map_dir):
-    print("in make weather map")
-    print(weather_df.head(2))
-    print(map_path)
-    print(map_dir)
+    
     # weather_df - shape files with weather warnings
     # map_path - path to file with generated weather map, ie .html file
 
     # get the current time in UTC (constant reference timezone)
     timestamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes')
-    print(timestamp)
+    
     # Use branca.colormap instead of choropleth
     # augment df with color features
     weather_df, max_wxwarnings, min_wxwarnings = crunch_data(weather_df)
@@ -55,7 +64,7 @@ def make_weather_map(weather_df, map_path, map_dir):
     mbr = fl.Map(location=[40.0,-95.0],zoom_start=4,tiles="Stamen Toner")
 
     colormap = cm.linear.Set1_09.scale(min_wxwarnings,max_wxwarnings).to_step(len(set(weather_df['PROD_ID'])))
-    print("after colormap")
+    )
 
 #####Merge (dissolve) weather data by warning type, onset, expiration
 
@@ -65,7 +74,6 @@ def make_weather_map(weather_df, map_path, map_dir):
     #Simplify geometry to reduce size of plot
     weather_df['geometry']=weather_df['geometry'].simplify(tolerance=0.01)
 
-    print('merged and simplified')
 ######
 
     #Add weather data to map with mouseover (this will take a few minutes), include tooltip
@@ -93,22 +101,18 @@ def make_weather_map(weather_df, map_path, map_dir):
 
     # Add minimap
     MiniMap(tile_layer='stamenterrain',zoom_level_offset=-5).add_to(mbr)
-    print("after map title")
-    if os.path.exists(map_dir) and os.path.isdir(map_dir):
-        print("weathermaps directory exits")
+    
+    if os.path.isdir(map_dir):
+        
         if os.path.exists(map_path):
-            print("if map_path exits")
             os.remove(map_path)
-        mbr.save(map_path) 
-        if not os.path.exists(map_path):
-            print("map not saved") 
+            mbr.save(map_path) 
+            return timestamp
+        else:
             return None
-        print("map saved in if")  
+    else:
+        return None
     
-    
-    print("saved map")
-    
-    return  timestamp
 
 
 
