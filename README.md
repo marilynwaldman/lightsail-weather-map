@@ -1,6 +1,6 @@
 # Weather Map
 
-Website that reads current weather data from NOAA, creates a folium map and renders the map to the user.
+The weather map is a flask app that reads current weather data from NOAA, creates a folium map and renders the map to the user.
 
 This is a prototype and proof of concept.  In particular evalualte amethods and research for programmatic map making without a gis.  The goal is to assess resource requirements and constraints.
 
