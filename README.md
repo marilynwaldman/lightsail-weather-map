@@ -11,7 +11,14 @@ https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-mode
 
 
 
+
+
 <img src="./flask/static/img/arch.png" width="525"/>
+
+
+
+
+
 
 * Nginx is a load balancer and reverse proxity.  It is used as an end point for web traffic and routes incoming http requests.
 
