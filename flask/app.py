@@ -1,3 +1,13 @@
+# Program wxwarning
+# by Todd Arbetter (todd.e.arbetter@gmail.com)
+# Software Engineer, IXMap, Golden, CO
+
+# collects latests National Weather Service Warnings, Watches, Advisories,
+# and Statements, plots shapefiles on an interactive map in various colors.
+# The map is able to pan and zoom, and on mouseover will give the type of
+# weather statement, start, and expiry.
+
+
 import os as os
 from functools import wraps, update_wrapper
 from datetime import datetime

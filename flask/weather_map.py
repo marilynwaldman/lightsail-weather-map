@@ -7,10 +7,6 @@
 # The map is able to pan and zoom, and on mouseover will give the type of
 # weather statement, start, and expiry.
 
-# created with streamlit and folium
-
-# import some libraries
-
 import geopandas as gpd
 import folium as fl
 from folium.plugins import MiniMap
@@ -66,7 +62,7 @@ def make_weather_map(weather_df, map_path, map_dir):
     colormap = cm.linear.Set1_09.scale(min_wxwarnings,max_wxwarnings).to_step(len(set(weather_df['PROD_ID'])))
     )
 
-#####Merge (dissolve) weather data by warning type, onset, expiration
+##### Merge (dissolve) weather data by warning type, onset, expiration
 
     weather_dfmerge = weather_df.dissolve(by=['PROD_TYPE','ONSET','ENDS'],aggfunc='first',as_index=False,dropna=False)
     weather_df = weather_dfmerge

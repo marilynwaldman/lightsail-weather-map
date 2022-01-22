@@ -7,9 +7,6 @@
 # The map is able to pan and zoom, and on mouseover will give the type of
 # weather statement, start, and expiry.
 
-# created with streamlit and folium
-
-# import some libraries
 
 import requests
 #from flask import Flask, jsonify
