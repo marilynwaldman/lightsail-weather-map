@@ -1,36 +1,23 @@
-### this stuff for testing locally on ec2 prior to lightsail distribution
-```
+# Weather Maps
 
-removing all containers and images
-sudo docker rm $(sudo docker ps -a -f status=exited -q)
-sudo docker ps -a
-sudo docker stop $(sudo docker ps -a -q)
-sudo docker rm $(sudo docker ps -a -q)
-sudo docker rmi $(sudo docker images -a -q)
-docker exec -it 9b3e605f8d54 /bin/sh
-sudo docker exec -it 412c97d0a9fb /bin/sh
-sudo docker logs 569668ca1756
+Website that reads current weather data from NOAA, creates a folium map and pushes this to the user.
 
-sudo docker build -t flask-container ./flask
+This is a prototype and proof of concept.  In particular we are evaluation methods and research for programmatic map making without a gis.  The goal is to evaluate resource requirements and constraints.
 
-sudo aws lightsail push-container-image --service-name weather-service \
---label flask-container \
---image flask-container
+This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  This architecture is discussed this link  and evolved from several tutorials as stated below.
 
+https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
 
-
-sudo aws lightsail create-container-service-deployment --service-name weather-service \
---containers file://containers.json \
---public-endpoint file://public-endpoint.json
+![Alt text](/static/img/arch.jpg?raw=true "Architecture")
 
 
 
 
+##  Purpose:
 
-```
 
 
-# Working template for flask gunicorn on aws lightsail.
+# Working template for nginx/gunicorn/flask on aws lightsail.
 
 # gunicorn adapted from:
 
@@ -477,3 +464,38 @@ The ```delete-container-service``` removes the container service, any associated
 
 ## Additional Resources
 The source code for this guide and this documentation is located in this [GitHub repository](https://github.com/AwsGeek/lightsail-containers-nginxq)
+
+
+
+### some notes for updating the weather map
+
+### Some notes ; this stuff for testing locally on ec2 prior to lightsail distribution
+```
+
+removing all containers and images
+sudo docker rm $(sudo docker ps -a -f status=exited -q)
+sudo docker ps -a
+sudo docker stop $(sudo docker ps -a -q)
+sudo docker rm $(sudo docker ps -a -q)
+sudo docker rmi $(sudo docker images -a -q)
+docker exec -it 9b3e605f8d54 /bin/sh
+sudo docker exec -it 412c97d0a9fb /bin/sh
+sudo docker logs 569668ca1756
+
+sudo docker build -t flask-container ./flask
+
+sudo aws lightsail push-container-image --service-name weather-service \
+--label flask-container \
+--image flask-container
+
+
+
+sudo aws lightsail create-container-service-deployment --service-name weather-service \
+--containers file://containers.json \
+--public-endpoint file://public-endpoint.json
+
+
+
+
+
+```
