@@ -1,8 +1,8 @@
 # Weather Map
 
-Website that reads current weather data from NOAA, creates a folium map and renders this map to the user.
+Website that reads current weather data from NOAA, creates a folium map and renders the map to the user.
 
-This is a prototype and proof of concept.  In particular we are evaluation methods and research for programmatic map making without a gis.  The goal is to evaluate resource requirements and constraints.
+This is a prototype and proof of concept.  In particular evalualte amethods and research for programmatic map making without a gis.  The goal is to assess resource requirements and constraints.
 
 This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  The architecture, pictured below,  is discussed this link  and evolved from several tutorials as stated below.
 
