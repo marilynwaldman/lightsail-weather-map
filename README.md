@@ -1,35 +1,22 @@
 # Weather Map
+by Todd Arbetter (todd.e.arbetter@gmail.com) and Marilyn Waldmann (mdwaldmann22@gmail.com)
+January 2022
 
-The weather map is a flask app that reads current weather data from NOAA, creates a folium map and renders the map to the user.
+The weather map is a flask app that reads current weather data from NOAA for the US and territories, creates a folium map, and renders the map to the user.
 
-This is a prototype and proof of concept.  In particular evalualte amethods and research for programmatic map making without a gis.  The goal is to assess resource requirements and constraints.
+This is a prototype and proof of concept.  In particular it evalulates methods and research for programmatic map making without a gis.  The goal is to assess resource requirements and constraints.
 
 This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  The architecture, pictured below,  is discussed this link  and evolved from several tutorials as stated below.
 
 https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
 
-
-
-
-
-
 <img src="./flask/static/img/arch.png" width="525"/>
-
-
-
-
-
 
 * Nginx is a load balancer and reverse proxity.  It is used as an end point for web traffic and routes incoming http requests.
 
 * Gunicorn creates multiple forks which are called workers to handle the requests.
 
 * Flask is a micro web framework written in Python that handles http requests: GET, POST, etc.
-
-
-
-
-
 
 ## Working template for nginx/gunicorn/flask on aws lightsail.
 
@@ -40,7 +27,6 @@ https://towardsdatascience.com/how-to-deploy-ml-models-using-flask-gunicorn-ngin
 and was deployed to ligntsail ec2 here:
 
 Instructions are below:
-
 
 ### map implementation 
 This will run from ec2 because docker images have to be uploaded to lightsail to create a deployment.  Docker images created on M1 processors fail on Lightsail containers.
