@@ -1,4 +1,4 @@
-# Weather Maps
+# Weather Map
 
 Website that reads current weather data from NOAA, creates a folium map and pushes this to the user.
 
@@ -13,23 +13,30 @@ https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-mode
 
 <img src="./flask/static/img/arch.png" width="525"/>
 
+*Nginx is a load balancer and reverse proxity.  It is used as an end point for web traffic and routes incoming http requests.
+
+*Gunicorn creates multiple forks which are called workers to handle the requests
+
+*Flask is a micro web framework written in Python that handles http requests: GET, POST, etc.
 
 
-##  Purpose:
 
 
 
-# Working template for nginx/gunicorn/flask on aws lightsail.
 
-# gunicorn adapted from:
+## Working template for nginx/gunicorn/flask on aws lightsail.
+
+### This work is adapted from:
 
 https://towardsdatascience.com/how-to-deploy-ml-models-using-flask-gunicorn-nginx-docker-9b32055b3d0
 
 and was deployed to ligntsail ec2 here:
 
+Instructions are below:
 
-# map implementation 
-This will run from ec2 because docker images have to be uploaded to lightsail to create a deployment.  This fails on macs with apple processors.
+
+### map implementation 
+This will run from ec2 because docker images have to be uploaded to lightsail to create a deployment.  Docker images created on M1 processors fail on Lightsail containers.
 
 1.  create an ubuntu ec2 instance (on lightsail)
   on lightsail create a static ip address - xx.xx.xxx.xxx.
@@ -175,20 +182,12 @@ sudo aws lightsail create-container-service-deployment --service-name weather-se
 
 
 
-
-
-
-
-
-
-
-
-# How to Setup an Nginx Reverse Proxy using Amazon Lightsail Containers
+### How to Setup an Nginx Reverse Proxy using Amazon Lightsail Containers
 In this guide, you'll learn how to configure a Flask web server behind an Nginx reverse proxy using Lightsail containers. The Nginx reverse proxy accepts web requests on port 80 and forwards them to the Flask web server on port 5000. The Flask web server fulfills the requests and return the response to Nginx. A Lightsail container service will be created to host both the Nginx and the Flask containers. A public endpoint will be created to allow external access to the Nginx server. 
 
 To get started, you'll need an [AWS account](https://portal.aws.amazon.com/billing/signup) and must install [Docker](https://docs.docker.com/engine/install/), [Docker compose](https://docs.docker.com/compose/install/), the [AWS Command Line Interface (CLI) tool](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and the [Lightsail Control (lightsailctl) plugin](https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-install-software) on your system. Follow the provided links if you don't have some of those.
 
-## 1. Get the source code
+### 1. Get the source code
 1. The source code to accompany this guide can be found in this repository. To get started, clone the GitHub respository locally.
 
    ```bash
