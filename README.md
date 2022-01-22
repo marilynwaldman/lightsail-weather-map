@@ -4,9 +4,11 @@ Website that reads current weather data from NOAA, creates a folium map and push
 
 This is a prototype and proof of concept.  In particular we are evaluation methods and research for programmatic map making without a gis.  The goal is to evaluate resource requirements and constraints.
 
-This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  This architecture is discussed this link  and evolved from several tutorials as stated below.
+This implementation is run on AWS Lightsail using nginx, gunicorn and flask.  The architecture, pictured below,  is discussed this link  and evolved from several tutorials as stated below.
 
 https://medium.com/@maheshkkumar/a-guide-to-deploying-machine-deep-learning-model-s-in-production-e497fd4b734a
+
+
 
 
 <img src="./flask/static/img/arch.png" width="525"/>
